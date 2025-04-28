@@ -1,47 +1,29 @@
 ﻿
 #include <stdio.h>
 #include <iostream>
-//Упражнение 1.8. Напишите программу для подсчета пробелов, табуляций и новых строк.
-/*Упражнение 1.9.Напишите программу, копирующую символы ввода в выходной поток
- и заменяющую стоящие подряд пробелы на один пробел.
- */
-/*Упражнение 1.10.Напишите программу, копирующую вводимые
-символы в выходной поток с заменой символа табуляции на \t, 
-символа забоя на \b и каждой обратной наклонной черты на 
-\\.Это сделает видимыми все символы табуляции и забоя.*/
-using namespace std;
-int main()
-{
-    int sim, flag=0;
-    printf("q to exit\n");
- 
+//нужно напечатать содержимае ввода перемещать на каждую строку новое слово
+int main() {
+	
+	int temp,sim, stroka, slova, flag;// переменные  флаг для слежки
+	sim = stroka = slova = flag = 0;
+	while ((temp = getchar()) != EOF) {
+		if (temp == '\n')stroka++;
+				if (temp == ' '||temp=='\n'||temp=='\t')
+				{ 
+					flag = 1;
+				}
+		if (flag == 1)
+		{
+			slova++;
+			flag = 0;
+		}
+		if (temp == '0')
+					break;
+				putchar(temp);
 
-    while ((sim = getchar()) != EOF) 
-    {
-        if (sim == '\t') {
-            putchar('\\');
-            putchar('t');
-        }
-        if (sim == ' ') 
-            {
-            if (!flag) {
-                putchar(sim);
-                flag = 1;               
-            }
-        }
-        else
-        {
-            putchar(sim);
-            flag = 0;
-        }
-           
-     }
-  
-   
-   
-       
-        
-    
-    return 0;
+				sim++;
+				
+		}			
+	printf("%d\t%d\t%d", sim, stroka, slova);
+	
 }
-
