@@ -11,6 +11,7 @@ int main() {
 				if (temp == ' '||temp=='\n'||temp=='\t')
 				{ 
 					flag = 1;
+					putchar('\n');
 				}
 		if (flag == 1)
 		{
