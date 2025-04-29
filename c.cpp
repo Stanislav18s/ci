@@ -1,30 +1,80 @@
 ﻿
 #include <stdio.h>
 #include <iostream>
-//нужно напечатать содержимае ввода перемещать на каждую строку новое слово
-int main() {
-	
-	int temp,sim, stroka, slova, flag;// переменные  флаг для слежки
-	sim = stroka = slova = flag = 0;
-	while ((temp = getchar()) != EOF) {
-		if (temp == '\n')stroka++;
-				if (temp == ' '||temp=='\n'||temp=='\t')
-				{ 
-					flag = 1;
-					putchar('\n');
-				}
-		if (flag == 1)
-		{
-			slova++;
-			flag = 0;
-		}
-		if (temp == '0')
-					break;
-				putchar(temp);
+#define IN 1 /* внутри слова */
 
-				sim++;
-				
-		}			
-	printf("%d\t%d\t%d", sim, stroka, slova);
-	
+#define OUT 0 /* вне слова */
+
+
+/*Упражнение 1.13.Напишите программу, печатающую гистограммы
+длин вводимых слов.Гистограмму легко рисовать горизонтальными полосами.
+Рисование вертикальными полосами - более трудная задача.*/
+using namespace std;
+// пункт первый нужно составить план и вообще научиться состовлять последовательность написания
+int main() {
+	int sim, slova, temp,state;
+	sim = slova = temp = 0;
+	state = 0;
+	int agge[12] = { 0 };
+	while ((temp = getchar()) != EOF) {
+		if (temp == '`') {
+			if (state == IN) {
+				for (int i = 0; i < 12; i++)
+				{
+					if (sim == i) ++agge[i];
+				}
+				sim = 0;
+			}
+			break;
+		}
+			if (temp != ' ' && temp != '\t' && temp != '\n')sim++;
+		if (temp == ' ' || temp == '\t' || temp == '\n') {
+			state = OUT;
+			
+		}
+		else if (state == OUT){
+			state = IN;
+			slova++;
+
+		}
+		
+		if (sim >0 && state == OUT)
+		{   
+			for (int i = 0; i < 12; i++)
+			{
+				if (sim == i) ++agge[i];
+			}
+			sim = 0;
+		}
+		
+		
+		
+
+
+
+
+		
+
+
+
+	}
+	/*for (int i = 0; i < 12;i++)
+		printf("%d\n", agge[i]);
+		cout << "sim " << sim << endl;;*/
+	cout << "slova " << slova << endl;
+
+
+	for (int i = 0; i < 12;i++) {
+		printf("bukb: %d slov:  ",i);
+		printf("%d  ",agge[i]);
+		int j = agge[i];
+			while (j>0 ) {
+				putchar('@');
+				putchar('@');
+				j--;
+			}
+		printf("\n");
+	}
+
+	return 0;
 }
