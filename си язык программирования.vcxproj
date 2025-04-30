@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="c.cpp" />
+    <ClCompile Include="c.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="1.gitignor" />
